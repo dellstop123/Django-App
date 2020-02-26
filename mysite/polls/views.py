@@ -2,7 +2,6 @@ from django.template import loader
 from django.http import Http404
 # Create your views here.
 from django.views import generic
-from .models import Question
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
@@ -16,7 +15,7 @@ def index(request):
     return render(request, 'polls/index.html', context)
 
 def detail(request, question_id):
-     try:
+    try:
         question = Question.objects.get(pk=question_id)
     except Question.DoesNotExist:
         question = get_object_or_404(Question, pk=question_id)
